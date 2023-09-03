@@ -1,0 +1,30 @@
+buildscript {
+    project.ext {
+        PUBLISH_GROUP_ID = 'work.curioustools'
+        PUBLISH_VERSION = '1.0.8'
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.3"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
+        classpath "io.github.gradle-nexus:publish-plugin:1.1.0"
+        classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:0.16.0"
+
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+plugins{
+    // detekt STEP1 applying plugin without enabling(detekt = kotlin code's static analyser)
+    id("io.gitlab.arturbosch.detekt").version("1.20.0-RC1").apply(false)
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+apply from: "${project.rootDir}/gradle_scripts/publish_root.gradle"
+apply from: "${project.rootDir}/gradle_scripts/jacoco_root.gradle"

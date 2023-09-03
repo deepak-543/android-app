@@ -1,0 +1,42 @@
+{
+  "attachments": [
+    {
+      "color": "${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning'",
+      "blocks": [
+        {
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": "*GitHub Action build results*  ℹ️️"
+          }
+        },
+        {
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": "• ${{inputs.LAST_RUN_TASK}} - ${{ job.status }}"
+          }
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": "• commit info :  <${{ github.event.pull_request.html_url || github.event.head_commit.url }}|${{github.event.head_commit.message}}>"
+          }
+        },
+
+        {
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": "• Full Runner URL: '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'"
+          }
+        }
+
+      ]
+    }
+  ]
+}
